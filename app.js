@@ -1,7 +1,9 @@
-$('#tokenfield').tokenfield({
+$('#tokenfield-1').tokenfield({
     autocomplete: {
         source: ['red','blue','green','yellow','violet','brown','purple','black','white'],
         delay: 100
     },
-    showAutocompleteOnFocus: true
+    showAutocompleteOnFocus: true,
+    tokens: ['black','white'],
+    createTokensOnBlur: true
 });
