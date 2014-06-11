@@ -13,7 +13,8 @@
     var app = angular.module("App", []);
 
     app.controller('AppCtrl', function ($scope) {
-        $scope.selectedtags = "white,pink";
+        $scope.selectedtags = "Mr. White, J. Pinkman";
+        $scope.autocompletetokens = "!!!, red, blue, green, yellow, violet, brown, purple, black, white";
     });
 
 
@@ -21,35 +22,60 @@
         return {
             restrict: 'A',
             require: 'ngModel',
+            scope: {
+                autotokens: "@"
+            },
             link: function (scope, element, attrs, ngModel) {
 
+                // when the model changes, the tokens are added
                 scope.$watch(
                     function () {
                         return ngModel.$modelValue;
                     },
                     function (newVal, oldVal) {
-                        if (newVal.trim().charAt(newVal.length - 1) != ',')
+                        if (newVal != oldVal &&
+                            newVal.trim().charAt(newVal.length - 1) != ',')
                             element.tokenfield('setTokens', newVal);
                     });
 
-                var trimmer = function (e) {
-                    return e.trim();
-                };
-                // get tokens from value string
-                var value = attrs.value.split(',').map(trimmer);
-                // get array of autocomplete tokens as array
-                var autotokens = attrs.autotokens.split(',').map(trimmer);
+                // when the autotokens list changes, the tokenfield is reset to change autocomplete list
+                scope.$watch(
+                    function () {
+                        return scope.autotokens;
+                    },
+                    function (newVal, oldVal) {
+                        if (newVal != oldVal) {
+                            element.tokenfield('destroy');
+                            init(ngModel.$modelValue);
+                        }
+                    });
 
-                element
-                    .tokenfield({
+                // init function prepare config and initialise tokenfield
+                function init(tokensStr) {
+                    // get tokens from value string
+                    if (!tokensStr) tokensStr = attrs.value;
+                    // get array of autocomplete tokens
+                    var autocompleteArr = scope.autotokens
+                        .split(',')
+                        .map(function (e) {
+                            return e.trim();
+                        })
+                        .filter(function (e) {
+                            return !!e;
+                        });
+
+                    element.tokenfield({
                         autocomplete: {
-                            source: autotokens,
-                            delay: 100
+                            source: autocompleteArr
                         },
                         showAutocompleteOnFocus: true,
-                        tokens: value,
+                        tokens: tokensStr,
                         createTokensOnBlur: true
                     });
+                }
+
+                // init jQuery control 'tokenfield'
+                init();
             }
         }
     });

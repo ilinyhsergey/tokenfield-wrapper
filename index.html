@@ -33,7 +33,9 @@
 
     <span>{{selectedtags}}</span>
     <br>
-    <input type="text" ng-model="selectedtags">
+    value: <input type="text" ng-model="selectedtags">
+    <br>
+    auto complete: <input type="text" ng-model="autocompletetokens">
     <br>
     <!--<input type="text" class="form-control" id="tokenfield-2"-->
     <input type="text" id="tokenfield-2"
@@ -41,7 +43,7 @@
            tokenfield
            ng-model="selectedtags"
            value="white-1, pink-1,   green-1"
-           autotokens="red, blue, green, yellow, violet, brown, purple, black, white"/>
+           autotokens="{{autocompletetokens}}"/>
 
 </div>
 
