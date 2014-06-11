@@ -24,12 +24,22 @@
 <!--<input type="text" class="form-control" id="tokenfield-1" value="red,green,blue" placeholder="Type something and hit enter"/>-->
 <input type="text" class="form-control" id="tokenfield-1"
        placeholder="Type something and hit enter"/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div ng-app="App" ng-controller="AppCtrl">
 
-<div ng-app="App">
-
-    <input type="text" class="form-control" id="tokenfield-2"
-           placeholder="Type something and hit enter or tab"
+    <span>{{selectedtags}}</span>
+    <br>
+    <input type="text" ng-model="selectedtags">
+    <br>
+    <!--<input type="text" class="form-control" id="tokenfield-2"-->
+    <input type="text" id="tokenfield-2"
+           placeholder=">>>>"
            tokenfield
+           ng-model="selectedtags"
            value="white-1, pink-1,   green-1"
            autotokens="red, blue, green, yellow, violet, brown, purple, black, white"/>
 
@@ -42,8 +52,11 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-<script type="text/javascript" src="libs/angular.min.js"></script>
-<script type="text/javascript" src="libs/angular-route.min.js"></script>
+<!--<script type="text/javascript" src="libs/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="libs/angular-route.min.js"></script>-->
+<script type="text/javascript" src="angular-1.2.16/angular.js"></script>
+<script type="text/javascript" src="angular-1.2.16/angular-route.js"></script>
+
 <script type="text/javascript" src="sliptree-bootstrap-tokenfield-e5d70c8/dist/bootstrap-tokenfield.js"></script>
 
 <script type="text/javascript" src="app.js"></script>
