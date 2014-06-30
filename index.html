@@ -30,20 +30,25 @@
 <!--<br>-->
 <!--<br>-->
 <div ng-app="App" ng-controller="AppCtrl">
+    <input type="text" ng-model="selectedtags" size="200"> - value
     <br>
-    just text<input type="text"/>
+    <br>
+
+    <input type="text" ng-model="autocompletetokens" size="200"> - auto complete
     <br>
     <br>
-    <span>{{selectedtags}}</span>
-    <br>
-    value: <input type="text" ng-model="selectedtags">
-    <br>
-    auto complete: <input type="text" ng-model="autocompletetokens">
+
     <input type="text" id="tokenfield-2"
            placeholder=">>>>"
            tokenfield
            ng-model="selectedtags"
-           autotokens="{{autocompletetokens}}"/>
+           autotokens="autocompletetokens"/>
+    <br>
+    <br>
+
+    <span>{{selectedtags}}</span>
+    <br>
+    <br>
 
 </div>
 
